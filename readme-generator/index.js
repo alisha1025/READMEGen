@@ -1,8 +1,8 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateMarkdown = require('../Develop/generateMarkdown');
+const generateMarkdown = require('./generateMarkdown');
 
-// Questions for user input
+// Array of questions for user input
 const questions = [
     {
         type: 'input',
@@ -70,7 +70,12 @@ function writeToFile(fileName, data) {
     });
 }
 
-// Prompt user and generate README
-inquirer.prompt(questions)
-    .then(answers => writeToFile('README.md', answers))
-    .catch(error => console.error('Error prompting user', error));
+// Function to initialize app
+function init() {
+    inquirer.prompt(questions)
+        .then(answers => writeToFile('README.md', answers))
+        .catch(error => console.error('Error prompting user', error));
+}
+
+// Function call to initialize app
+init();
